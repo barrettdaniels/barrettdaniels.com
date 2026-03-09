@@ -411,8 +411,9 @@
   function togglePress() {
     var hidden = document.getElementById('press-hidden');
     var btn = document.getElementById('show-more-btn');
-    var expanded = hidden.classList.toggle('visible');
-    btn.textContent = expanded ? 'Show less ↑' : 'Show all press & media ↓';
+    var expanded = hidden.style.display === 'block';
+    hidden.style.display = expanded ? 'none' : 'block';
+    btn.textContent = expanded ? 'Show all press & media ↓' : 'Show less ↑';
   }
 </script>
 

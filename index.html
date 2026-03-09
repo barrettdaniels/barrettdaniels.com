@@ -35,14 +35,8 @@
       width: 110px;
       height: 110px;
       border-radius: 50%;
-      object-fit: cover;
       background: var(--border);
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: var(--gray);
       overflow: hidden;
     }
 
@@ -140,10 +134,7 @@
       margin-bottom: 14px;
     }
 
-    .projects .card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-    }
+    .projects .card h3 { font-size: 1rem; font-weight: 600; }
 
     .projects .card p {
       margin-top: 6px;
@@ -151,14 +142,15 @@
       color: var(--gray);
     }
 
-    .press ul {
+    /* Press links */
+    .press-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .press li a {
+    .press-list li a {
       font-size: 0.95rem;
       color: var(--black);
       text-decoration: none;
@@ -171,21 +163,28 @@
       transition: background 0.15s;
     }
 
-    .press li a:hover { background: var(--light); }
+    .press-list li a:hover { background: var(--light); }
+    .pub { font-weight: 500; }
+    .title { color: var(--gray); font-size: 0.875rem; margin-top: 2px; }
+    .arrow { color: var(--gray); font-size: 1rem; flex-shrink: 0; margin-left: 12px; }
 
-    .press .pub { font-weight: 500; }
-    .press .title { color: var(--gray); font-size: 0.875rem; margin-top: 2px; }
-    .press .arrow { color: var(--gray); font-size: 1rem; }
+    .subhead {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 12px;
+      margin-top: 8px;
+    }
 
-    /* Hidden press items */
-    .press-hidden { display: none; }
-    .press-hidden.visible { display: flex; flex-direction: column; gap: 14px; }
+    /* Details/summary toggle */
+    details { margin-top: 20px; }
 
-    .show-more-btn {
+    details summary {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 16px;
       background: none;
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -193,10 +192,22 @@
       font-size: 0.875rem;
       padding: 8px 16px;
       cursor: pointer;
+      list-style: none;
       transition: background 0.15s, color 0.15s;
+      font-family: inherit;
     }
 
-    .show-more-btn:hover { background: var(--light); color: #fff; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary:hover { background: var(--light); color: #fff; }
+
+    details[open] summary { color: #fff; }
+
+    .details-content {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
 
     footer {
       border-top: 1px solid var(--border);
@@ -277,7 +288,7 @@
   <section class="press">
     <h2>Press &amp; Media</h2>
 
-    <h3 style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin-bottom:12px;margin-top:8px;">TV &amp; Video</h3>
+    <p class="subhead">TV &amp; Video</p>
 
     <div style="margin-bottom:14px;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
       <video controls poster="poster.jpg" width="100%" style="display:block;">
@@ -286,7 +297,7 @@
       </video>
     </div>
 
-    <ul id="press-visible">
+    <ul class="press-list">
       <li>
         <a href="https://www.bloomberg.com/news/videos/2019-01-25/ipos-will-snap-back-now-that-shutdown-is-over-deloitte-s-daniels-says-video" target="_blank" rel="noopener">
           <div><div class="pub">Bloomberg TV</div><div class="title">IPOs Will Snap Back Now That Shutdown Is Over</div></div>
@@ -319,86 +330,58 @@
       </li>
     </ul>
 
-    <div id="press-hidden" style="display:none;">
-      <ul style="margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:14px;">
-        <li>
-          <a href="https://www.cnbc.com/video/2019/03/19/deloitte-2019-will-be-a-historic-year-for-ipos.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;transition:background 0.15s;">
-            <div><div class="pub">CNBC — Squawk on the Street</div><div class="title">Deloitte: 2019 Will Be a Historic Year for IPOs</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://finance.yahoo.com/video/ipo-market-worst-behind-us-203245033.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;">
-            <div><div class="pub">Yahoo Finance Live</div><div class="title">IPO Market: Is the Worst Behind Us?</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://finance.yahoo.com/video/why-one-strategist-says-spacs-161027427.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;">
-            <div><div class="pub">Yahoo Finance Live</div><div class="title">Why One Strategist Says SPACs Aren't Going Anywhere</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://finance.yahoo.com/video/workplace-messaging-slack-surges-trading-185823095.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;">
-            <div><div class="pub">Yahoo Finance Live</div><div class="title">Workplace Messaging: Slack Surges After Direct Listing</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://finance.yahoo.com/video/why-zoom-pinterest-ipos-matter-183400144.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;">
-            <div><div class="pub">Yahoo Finance Live</div><div class="title">Why the Zoom and Pinterest IPOs Matter</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/watch?v=tTaiY1kI74s" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;">
-            <div><div class="pub">Brex — Controllers Classified (YouTube)</div><div class="title">Ep. 8: An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/watch?v=Y5oydfoLMO8" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;">
-            <div><div class="pub">Gappify (YouTube)</div><div class="title">E16: Accounting Perspectives from Today's IPO Environment with Barrett Daniels</div></div>
-            <span class="arrow">↗</span>
-          </a>
-        </li>
-      </ul>
+    <details>
+      <summary>Show all press &amp; media ↓</summary>
+      <div class="details-content">
 
-      <h3 style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin-bottom:12px;margin-top:28px;">Print &amp; Online</h3>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;">
-        <li><a href="https://www.bloomberg.com/news/articles/2024-02-03/skittish-investors-pull-the-rug-out-from-under-pricey-us-ipos" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Bloomberg</div><div class="title">Skittish Investors Pull the Rug Out From Under Pricey US IPOs</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.bloomberg.com/news/articles/2023-09-12/plenty-of-startups-looking-at-ipos-but-few-are-prepared-to-go" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Bloomberg</div><div class="title">Plenty of Startups Looking at IPOs, but Few Are Prepared to Go</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.cnbc.com/2023/07/23/signs-are-emerging-that-the-ipo-market-can-make-a-comeback-soon.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">CNBC</div><div class="title">Signs Are Emerging That the IPO Market Can Make a Comeback Soon</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.bizjournals.com/sanjose/news/2023/04/28/bay-area-unicorns-mean-little-on-wall-street.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Silicon Valley Business Journal</div><div class="title">Bay Area Unicorns Mean Little on Wall Street</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.cnn.com/2023/04/25/investing/premarket-stocks-trading/index.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">CNN Business</div><div class="title">The Banking Crisis May Have Set the Stage for an IPO Comeback</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.cnn.com/2022/09/30/investing/premarket-stocks-trading" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">CNN Business</div><div class="title">Can Porsche Cure an Ailing IPO Market?</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.cnbc.com/amp/2021/09/01/18-billion-fanatics-prepares-for-ipo-heres-whats-next-for-the-company.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">CNBC</div><div class="title">$18 Billion Fanatics Prepares for IPO</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://finance.yahoo.com/news/how-ubers-ipo-pricing-compares-to-other-recent-offerings-205855023.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Yahoo Finance</div><div class="title">How Uber's IPO Pricing Compares to Other Recent Offerings</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.nytimes.com/2019/06/20/technology/slack-stock-ipo-price-trading.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The New York Times</div><div class="title">Slack Stock: IPO Price and Trading</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.nytimes.com/2019/04/15/technology/ipo-tech-companies-horde.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The New York Times</div><div class="title">The Horde of Tech Companies Heading to IPO</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.nytimes.com/2019/03/22/technology/pinterest-ipo.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The New York Times</div><div class="title">Pinterest IPO</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.nytimes.com/2018/12/06/technology/lyft-uber-ipo.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The New York Times</div><div class="title">Lyft and Uber's Road to IPO</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.nytimes.com/2018/11/27/business/company-ipo-buyout-private.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The New York Times</div><div class="title">Why Companies Are Staying Private Longer</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.latimes.com/business/la-fi-lyft-ipo-uber-20190301-story.html" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Los Angeles Times</div><div class="title">Lyft IPO and What It Means for Uber</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.marketwatch.com/story/stampede-of-the-decacorns-here-are-the-big-name-startups-preparing-for-2019-ipos-2018-12-27" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">MarketWatch</div><div class="title">Stampede of the 'Decacorns': Big-Name Startups Preparing for 2019 IPOs</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.marketwatch.com/story/slack-stock-soars-after-direct-listing-2019-06-20" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">MarketWatch</div><div class="title">Slack Stock Soars After Direct Listing</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.marketwatch.com/story/ipos-in-2018-here-are-six-tech-companies-that-could-go-public-2017-12-26" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">MarketWatch</div><div class="title">Six Tech Companies That Could Go Public in 2018</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.wired.com/story/uber-ipo-technology-bubble/" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Wired</div><div class="title">The Uber IPO and the Technology Bubble</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://news.crunchbase.com/venture/slack-trades-over-40-per-share-following-direct-listing/" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Crunchbase News</div><div class="title">Slack Trades Over $40 Per Share Following Direct Listing</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://news.crunchbase.com/public/how-to-read-an-s1/" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Crunchbase News</div><div class="title">How to Read an S-1</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.wsj.com/articles/how-tech-startups-play-the-numbers-game-1433903883" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The Wall Street Journal</div><div class="title">How Tech Startups Play the Numbers Game</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.economist.com/briefing/2019/04/17/the-wave-of-unicorn-ipos-reveals-silicon-valleys-groupthink" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">The Economist</div><div class="title">The Wave of Unicorn IPOs Reveals Silicon Valley's Groupthink</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://fortune.com/2019/03/29/lyft-ipo-tech-companies/" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Fortune</div><div class="title">Lyft IPO Kicks Off Highly-Anticipated Year for Public Debuts in Tech</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://fortune.com/2019/08/14/wework-ipo-filing-prospectus-s1-financials-stock/" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Fortune</div><div class="title">WeWork IPO Filing: 5 Things to Watch for as You Read Its Prospectus</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.brex.com/resources/controllers-classified/episode-08" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Brex — Controllers Classified Podcast</div><div class="title">An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
-        <li><a href="https://www.gappify.com/podcast/e58-the-state-of-ipos-in-2025-how-ai-is-changing-the-game/" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--black);text-decoration:none;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid var(--border);border-radius:8px;"><div><div class="pub">Gappify Podcast</div><div class="title">E58: The State of IPOs in 2025 — How AI Is Changing the Game</div></div><span class="arrow">↗</span></a></li>
-      </ul>
-    </div>
+        <div>
+          <p class="subhead" style="margin-top:0;">More TV &amp; Video</p>
+          <ul class="press-list">
+            <li><a href="https://www.cnbc.com/video/2019/03/19/deloitte-2019-will-be-a-historic-year-for-ipos.html" target="_blank" rel="noopener"><div><div class="pub">CNBC — Squawk on the Street</div><div class="title">Deloitte: 2019 Will Be a Historic Year for IPOs</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/ipo-market-worst-behind-us-203245033.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">IPO Market: Is the Worst Behind Us?</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/why-one-strategist-says-spacs-161027427.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">Why One Strategist Says SPACs Aren't Going Anywhere</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/workplace-messaging-slack-surges-trading-185823095.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">Workplace Messaging: Slack Surges After Direct Listing</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/why-zoom-pinterest-ipos-matter-183400144.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">Why the Zoom and Pinterest IPOs Matter</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.youtube.com/watch?v=tTaiY1kI74s" target="_blank" rel="noopener"><div><div class="pub">Brex — Controllers Classified (YouTube)</div><div class="title">Ep. 8: An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.youtube.com/watch?v=Y5oydfoLMO8" target="_blank" rel="noopener"><div><div class="pub">Gappify (YouTube)</div><div class="title">E16: Accounting Perspectives from Today's IPO Environment with Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
+          </ul>
+        </div>
 
-    <button class="show-more-btn" id="show-more-btn" onclick="togglePress()">
-      Show all press &amp; media ↓
-    </button>
+        <div>
+          <p class="subhead" style="margin-top:0;">Print &amp; Online</p>
+          <ul class="press-list">
+            <li><a href="https://www.bloomberg.com/news/articles/2024-02-03/skittish-investors-pull-the-rug-out-from-under-pricey-us-ipos" target="_blank" rel="noopener"><div><div class="pub">Bloomberg</div><div class="title">Skittish Investors Pull the Rug Out From Under Pricey US IPOs</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.bloomberg.com/news/articles/2023-09-12/plenty-of-startups-looking-at-ipos-but-few-are-prepared-to-go" target="_blank" rel="noopener"><div><div class="pub">Bloomberg</div><div class="title">Plenty of Startups Looking at IPOs, but Few Are Prepared to Go</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.cnbc.com/2023/07/23/signs-are-emerging-that-the-ipo-market-can-make-a-comeback-soon.html" target="_blank" rel="noopener"><div><div class="pub">CNBC</div><div class="title">Signs Are Emerging That the IPO Market Can Make a Comeback Soon</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.bizjournals.com/sanjose/news/2023/04/28/bay-area-unicorns-mean-little-on-wall-street.html" target="_blank" rel="noopener"><div><div class="pub">Silicon Valley Business Journal</div><div class="title">Bay Area Unicorns Mean Little on Wall Street</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.cnn.com/2023/04/25/investing/premarket-stocks-trading/index.html" target="_blank" rel="noopener"><div><div class="pub">CNN Business</div><div class="title">The Banking Crisis May Have Set the Stage for an IPO Comeback</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.cnn.com/2022/09/30/investing/premarket-stocks-trading" target="_blank" rel="noopener"><div><div class="pub">CNN Business</div><div class="title">Can Porsche Cure an Ailing IPO Market?</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.cnbc.com/amp/2021/09/01/18-billion-fanatics-prepares-for-ipo-heres-whats-next-for-the-company.html" target="_blank" rel="noopener"><div><div class="pub">CNBC</div><div class="title">$18 Billion Fanatics Prepares for IPO</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/news/how-ubers-ipo-pricing-compares-to-other-recent-offerings-205855023.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance</div><div class="title">How Uber's IPO Pricing Compares to Other Recent Offerings</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2019/06/20/technology/slack-stock-ipo-price-trading.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Slack Stock: IPO Price and Trading</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2019/04/15/technology/ipo-tech-companies-horde.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">The Horde of Tech Companies Heading to IPO</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2019/03/22/technology/pinterest-ipo.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Pinterest IPO</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2018/12/06/technology/lyft-uber-ipo.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Lyft and Uber's Road to IPO</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2018/11/27/business/company-ipo-buyout-private.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Why Companies Are Staying Private Longer</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.latimes.com/business/la-fi-lyft-ipo-uber-20190301-story.html" target="_blank" rel="noopener"><div><div class="pub">Los Angeles Times</div><div class="title">Lyft IPO and What It Means for Uber</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.marketwatch.com/story/stampede-of-the-decacorns-here-are-the-big-name-startups-preparing-for-2019-ipos-2018-12-27" target="_blank" rel="noopener"><div><div class="pub">MarketWatch</div><div class="title">Stampede of the 'Decacorns': Big-Name Startups Preparing for 2019 IPOs</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.marketwatch.com/story/slack-stock-soars-after-direct-listing-2019-06-20" target="_blank" rel="noopener"><div><div class="pub">MarketWatch</div><div class="title">Slack Stock Soars After Direct Listing</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.marketwatch.com/story/ipos-in-2018-here-are-six-tech-companies-that-could-go-public-2017-12-26" target="_blank" rel="noopener"><div><div class="pub">MarketWatch</div><div class="title">Six Tech Companies That Could Go Public in 2018</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.wired.com/story/uber-ipo-technology-bubble/" target="_blank" rel="noopener"><div><div class="pub">Wired</div><div class="title">The Uber IPO and the Technology Bubble</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://news.crunchbase.com/venture/slack-trades-over-40-per-share-following-direct-listing/" target="_blank" rel="noopener"><div><div class="pub">Crunchbase News</div><div class="title">Slack Trades Over $40 Per Share Following Direct Listing</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://news.crunchbase.com/public/how-to-read-an-s1/" target="_blank" rel="noopener"><div><div class="pub">Crunchbase News</div><div class="title">How to Read an S-1</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.wsj.com/articles/how-tech-startups-play-the-numbers-game-1433903883" target="_blank" rel="noopener"><div><div class="pub">The Wall Street Journal</div><div class="title">How Tech Startups Play the Numbers Game</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.economist.com/briefing/2019/04/17/the-wave-of-unicorn-ipos-reveals-silicon-valleys-groupthink" target="_blank" rel="noopener"><div><div class="pub">The Economist</div><div class="title">The Wave of Unicorn IPOs Reveals Silicon Valley's Groupthink</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://fortune.com/2019/03/29/lyft-ipo-tech-companies/" target="_blank" rel="noopener"><div><div class="pub">Fortune</div><div class="title">Lyft IPO Kicks Off Highly-Anticipated Year for Public Debuts in Tech</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://fortune.com/2019/08/14/wework-ipo-filing-prospectus-s1-financials-stock/" target="_blank" rel="noopener"><div><div class="pub">Fortune</div><div class="title">WeWork IPO Filing: 5 Things to Watch for as You Read Its Prospectus</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.brex.com/resources/controllers-classified/episode-08" target="_blank" rel="noopener"><div><div class="pub">Brex — Controllers Classified Podcast</div><div class="title">An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.gappify.com/podcast/e58-the-state-of-ipos-in-2025-how-ai-is-changing-the-game/" target="_blank" rel="noopener"><div><div class="pub">Gappify Podcast</div><div class="title">E58: The State of IPOs in 2025 — How AI Is Changing the Game</div></div><span class="arrow">↗</span></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </details>
+
   </section>
 
 </main>
@@ -406,16 +389,6 @@
 <footer>
   &copy; 2026 Barrett Daniels
 </footer>
-
-<script>
-  function togglePress() {
-    var hidden = document.getElementById('press-hidden');
-    var btn = document.getElementById('show-more-btn');
-    var expanded = hidden.style.display === 'block';
-    hidden.style.display = expanded ? 'none' : 'block';
-    btn.textContent = expanded ? 'Show all press & media ↓' : 'Show less ↑';
-  }
-</script>
 
 </body>
 </html>

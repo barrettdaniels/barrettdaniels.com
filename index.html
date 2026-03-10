@@ -14,391 +14,568 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Barrett Daniels">
   <meta name="twitter:description" content="Barrett Daniels is a serial entrepreneur and finance executive with 25+ years in capital markets and emerging technology.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #f0f0f0;
-      --gray: #999999;
-      --light: #1e1e1e;
-      --border: #333333;
-      --accent: #ffffff;
+      --bg: #ffffff;
+      --bg-subtle: #F7F7F7;
+      --text: #1A1A1A;
+      --muted: #888888;
+      --border: #E8E8E8;
+      --max: 800px;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #111111;
-      color: #ffffff;
-      font-size: 112%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      max-width: 960px;
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 40px;
+    }
+
+    .nav-inner {
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 72px 32px 48px;
+      height: 60px;
       display: flex;
       align-items: center;
-      gap: 40px;
+      justify-content: space-between;
     }
 
-    .headshot {
-      width: 110px;
-      height: 110px;
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all 0.25s;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px 24px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* LAYOUT */
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-photo {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      background: var(--border);
-      flex-shrink: 0;
       overflow: hidden;
+      flex-shrink: 0;
+      background: var(--bg-subtle);
     }
 
-    .headshot img {
+    .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
     }
 
-    .header-text h1 {
-      font-size: 2rem;
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
     }
 
-    .header-text p {
-      margin-top: 6px;
-      color: var(--gray);
+    .hero-text p {
       font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 24px;
     }
 
     .linkedin-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 16px;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      padding: 10px 20px;
+      border: 1px solid var(--text);
+      border-radius: 2px;
       text-decoration: none;
-      color: var(--black);
-      font-size: 0.875rem;
-      transition: background 0.15s;
-    }
-
-    .linkedin-btn:hover { background: var(--light); }
-    .linkedin-btn svg { width: 16px; height: 16px; }
-
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 32px 80px;
-    }
-
-    section { margin-bottom: 56px; }
-
-    section h2 {
+      color: var(--text);
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .linkedin-btn:hover { background: var(--text); color: #fff; }
+    .linkedin-btn svg { width: 14px; height: 14px; }
+
+    /* ABOUT */
+    .about p {
+      font-size: 1.05rem;
+      color: var(--text);
+      font-weight: 300;
+      max-width: 680px;
+    }
+
+    .about p + p { margin-top: 20px; }
+
+    /* CAREER BENTO GRID */
+    .bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .bento-card {
+      background: var(--bg);
+      padding: 32px;
+      transition: background 0.2s;
+    }
+
+    .bento-card:hover { background: var(--bg-subtle); }
+
+    .bento-card.wide {
+      grid-column: span 2;
+    }
+
+    .bento-year {
+      font-size: 0.7rem;
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      margin-bottom: 10px;
     }
 
-    .bio p {
+    .bento-card h3 {
+      font-family: 'Playfair Display', serif;
       font-size: 1rem;
-      color: #ffffff;
-      margin-bottom: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.3;
     }
 
-    .accomplishments ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    .bento-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
     }
 
-    .accomplishments li {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .accomplishments .year {
-      font-size: 0.8rem;
-      color: var(--gray);
-      min-width: 80px;
-      padding-top: 2px;
-      flex-shrink: 0;
-    }
-
-    .accomplishments .detail {
-      font-size: 0.95rem;
-      color: #ffffff;
-    }
-
-    .projects .card {
+    /* CURRENT */
+    .current-card {
+      padding: 40px;
+      background: var(--bg-subtle);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-bottom: 14px;
     }
 
-    .projects .card h3 { font-size: 1rem; font-weight: 600; }
-
-    .projects .card p {
-      margin-top: 6px;
-      font-size: 0.9rem;
-      color: var(--gray);
+    .current-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    /* Press links */
+    .current-card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* PRESS */
     .press-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 14px;
     }
 
     .press-list li a {
-      font-size: 0.95rem;
-      color: var(--black);
-      text-decoration: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: background 0.15s;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: padding-left 0.2s;
     }
 
-    .press-list li a:hover { background: var(--light); }
-    .pub { font-weight: 500; }
-    .title { color: var(--gray); font-size: 0.875rem; margin-top: 2px; }
-    .arrow { color: var(--gray); font-size: 1rem; flex-shrink: 0; margin-left: 12px; }
+    .press-list li a:hover { padding-left: 6px; }
 
-    .subhead {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+    .press-pub {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #888;
-      margin-bottom: 12px;
-      margin-top: 8px;
+      color: var(--muted);
+      margin-bottom: 3px;
     }
 
-    /* Details/summary toggle */
-    details { margin-top: 20px; }
+    .press-title {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .press-arrow {
+      color: var(--muted);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    /* Video */
+    .video-wrap {
+      margin-bottom: 40px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .video-wrap video { display: block; width: 100%; }
+
+    /* Details toggle */
+    details { margin-top: 32px; }
 
     details summary {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--gray);
-      font-size: 0.875rem;
-      padding: 8px 16px;
-      cursor: pointer;
+      gap: 8px;
       list-style: none;
-      transition: background 0.15s, color 0.15s;
-      font-family: inherit;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--text);
+      transition: color 0.2s;
     }
 
     details summary::-webkit-details-marker { display: none; }
-    details summary:hover { background: var(--light); color: #fff; }
-
-    details[open] summary { color: #fff; }
+    details summary:hover { color: var(--text); }
+    details[open] summary { color: var(--text); }
 
     .details-content {
-      margin-top: 20px;
+      margin-top: 32px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 40px;
     }
 
+    .press-subhead {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* FOOTER */
     footer {
-      border-top: 1px solid var(--border);
+      padding: 48px 40px;
       text-align: center;
-      padding: 28px 24px;
-      font-size: 0.8rem;
-      color: var(--gray);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
     }
 
-    @media (max-width: 540px) {
-      header { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .header-text h1 { font-size: 1.6rem; }
+    /* MOBILE */
+    @media (max-width: 640px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { padding: 16px 24px 24px; }
+      .container { padding: 0 24px; }
+      section { padding: 56px 0; }
+      .hero { padding: 64px 0 56px; }
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .hero-text h1 { font-size: 2rem; }
+      .bento { grid-template-columns: 1fr; }
+      .bento-card.wide { grid-column: span 1; }
+      footer { padding: 40px 24px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="headshot">
-    <img src="headshot.jpg" alt="Barrett Daniels" />
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#">Barrett Daniels</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#press">Press</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div class="header-text">
-    <h1>Barrett Daniels</h1>
-    <p>Entrepreneur and Finance Veteran</p>
-    <a class="linkedin-btn" href="https://www.linkedin.com/in/barrettdaniels/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0z"/></svg>
-      Connect on LinkedIn
-    </a>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#career" onclick="toggleMenu()">Career</a>
+  <a href="#press" onclick="toggleMenu()">Press</a>
+</div>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-photo">
+        <img src="headshot.jpg" alt="Barrett Daniels" />
+      </div>
+      <div class="hero-text">
+        <h1>Barrett Daniels</h1>
+        <p>Entrepreneur &amp; Finance Executive</p>
+        <a class="linkedin-btn" href="https://www.linkedin.com/in/barrettdaniels/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
   </div>
-</header>
+</div>
 
-<main>
-
-  <section class="bio">
-    <h2>About</h2>
+<!-- ABOUT -->
+<div class="container">
+  <section id="about" class="about">
+    <p class="section-label">About</p>
     <p>Barrett Daniels is a serial entrepreneur and finance executive with over 25 years of experience building companies, advising on capital markets transactions, and leading complex financial transformations.</p>
     <p>Barrett's work sits at the intersection of capital markets, institutional finance, and emerging technology like AI and Digital Assets. During his career, Barrett has assisted on over 100 IPO and similar transactions.</p>
   </section>
+</div>
 
-  <section class="accomplishments">
-    <h2>Career Highlights</h2>
-    <ul>
-      <li>
-        <span class="year">2025</span>
-        <span class="detail">Co-founded a stealth-stage fintech startup building at the intersection of AI and institutional digital asset management. Raised VC and Angel funding, MVP in process.</span>
-      </li>
-      <li>
-        <span class="year">2020s</span>
-        <span class="detail">Led Deloitte Capital Markets as Partner and US IPO Services Leader; helped build the Silicon Valley Accounting and Reporting Advisory function from the ground up. Led all media efforts for Deloitte Capital Markets (see below). Operating Partner, IPO Readiness, for Softbank Vision Fund.</span>
-      </li>
-      <li>
-        <span class="year">2014–2019</span>
-        <span class="detail">Founded Nextstep Advisory Services, an IPO and Accounting Advisory firm based in Silicon Valley, later sold to Deloitte Audit, their first acquisition since the 1980s. CFO of GigCapital SPAC from foundation through IPO and beyond.</span>
-      </li>
-      <li>
-        <span class="year">2007–2013</span>
-        <span class="detail">Helped start and grow Connor Group, a Silicon Valley Accounting Advisory firm.</span>
-      </li>
-      <li>
-        <span class="year">2000s</span>
-        <span class="detail">Led the SuccessFactors IPO as Director of Finance. Worked with the PwC Capital Markets Group, including a secondment to Sydney, Australia, to assist with US IPOs. Owned and managed Backstreet Cafe, the only bar in Beverly Hills, CA at the time.</span>
-      </li>
-      <li>
-        <span class="year">Education</span>
-        <span class="detail">B.S., Accounting, Florida State University.</span>
-      </li>
-    </ul>
+<!-- CAREER -->
+<div class="container">
+  <section id="career">
+    <p class="section-label">Career Highlights</p>
+    <div class="bento">
+      <div class="bento-card wide">
+        <div class="bento-year">2025 — Present</div>
+        <p>Co-founded a stealth-stage fintech startup building at the intersection of AI and institutional digital asset management. Raised VC and Angel funding, MVP in process.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-year">2020s</div>
+        <p>Led Deloitte Capital Markets as Partner and US IPO Services Leader; helped build the Silicon Valley Accounting and Reporting Advisory function from the ground up. Led all media efforts for Deloitte Capital Markets (see below).</p>
+        <p style="margin-top:12px;">Operating Partner, IPO Readiness, for Softbank Vision Fund.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-year">2014 — 2019</div>
+        <p>Founded Nextstep Advisory Services, an IPO and Accounting Advisory firm based in Silicon Valley, later sold to Deloitte Audit, their first acquisition since the 1980s.</p>
+        <p style="margin-top:12px;">CFO of GigCapital SPAC from foundation through IPO and beyond.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-year">2007 — 2013</div>
+        <p>Helped start and grow Connor Group, a Silicon Valley Accounting Advisory firm.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-year">2000s</div>
+        <p>Led the SuccessFactors IPO as Director of Finance.</p>
+        <p style="margin-top:12px;">Worked with the PwC Capital Markets Group, including a secondment to Sydney, Australia, to assist with US IPOs.</p>
+        <p style="margin-top:12px;">Owned and managed Backstage Cafe, the only bar in Beverly Hills, CA at the time.</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-year">Education</div>
+        <p>B.S., Accounting, Florida State University.</p>
+      </div>
+    </div>
   </section>
+</div>
 
-  <section class="projects">
-    <h2>Current Projects</h2>
-    <div class="card">
+<!-- CURRENT -->
+<div class="container">
+  <section>
+    <p class="section-label">Current Projects</p>
+    <div class="current-card">
       <h3>Stealth Fintech Startup</h3>
       <p>Currently building at the intersection of AI and institutional digital asset management. More details coming soon.</p>
     </div>
   </section>
+</div>
 
-  <section class="press">
-    <h2>Press &amp; Media</h2>
+<!-- PRESS -->
+<div class="container">
+  <section id="press">
+    <p class="section-label">Press &amp; Media</p>
 
-    <p class="subhead">TV &amp; Video</p>
-
-    <div style="margin-bottom:14px;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
-      <video controls poster="poster.jpg" width="100%" style="display:block;">
+    <div class="video-wrap">
+      <video controls poster="poster.jpg" width="100%">
         <source src="interview.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
     </div>
 
     <ul class="press-list">
-      <li>
-        <a href="https://www.bloomberg.com/news/videos/2019-01-25/ipos-will-snap-back-now-that-shutdown-is-over-deloitte-s-daniels-says-video" target="_blank" rel="noopener">
-          <div><div class="pub">Bloomberg TV</div><div class="title">IPOs Will Snap Back Now That Shutdown Is Over</div></div>
-          <span class="arrow">↗</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.wsj.com/finance/stocks/ipo-market-faces-worst-year-in-two-decades-startups-11661181427" target="_blank" rel="noopener">
-          <div><div class="pub">The Wall Street Journal</div><div class="title">IPO Market Faces Worst Year in Two Decades</div></div>
-          <span class="arrow">↗</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.nytimes.com/2024/03/13/technology/reddit-public-offering-stock-market.html" target="_blank" rel="noopener">
-          <div><div class="pub">The New York Times</div><div class="title">Reddit's Public Offering and the Stock Market</div></div>
-          <span class="arrow">↗</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.cnbc.com/video/2019/05/13/ubers-weak-performance-could-chill-other-ipos-investment-analyst.html" target="_blank" rel="noopener">
-          <div><div class="pub">CNBC — Squawk on the Street</div><div class="title">Uber's Weak Performance Could Chill Other IPOs</div></div>
-          <span class="arrow">↗</span>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.cnbc.com/video/2019/06/14/bullpen-capital-founding-partner-the-markets-are-healing-this-is-the-time-to-go-public.html" target="_blank" rel="noopener">
-          <div><div class="pub">CNBC</div><div class="title">The Markets Are Healing — This Is the Time to Go Public</div></div>
-          <span class="arrow">↗</span>
-        </a>
-      </li>
+      <li><a href="https://www.bloomberg.com/news/videos/2019-01-25/ipos-will-snap-back-now-that-shutdown-is-over-deloitte-s-daniels-says-video" target="_blank" rel="noopener"><div><div class="press-pub">Bloomberg TV</div><div class="press-title">IPOs Will Snap Back Now That Shutdown Is Over</div></div><span class="press-arrow">↗</span></a></li>
+      <li><a href="https://www.wsj.com/finance/stocks/ipo-market-faces-worst-year-in-two-decades-startups-11661181427" target="_blank" rel="noopener"><div><div class="press-pub">The Wall Street Journal</div><div class="press-title">IPO Market Faces Worst Year in Two Decades</div></div><span class="press-arrow">↗</span></a></li>
+      <li><a href="https://www.nytimes.com/2024/03/13/technology/reddit-public-offering-stock-market.html" target="_blank" rel="noopener"><div><div class="press-pub">The New York Times</div><div class="press-title">Reddit's Public Offering and the Stock Market</div></div><span class="press-arrow">↗</span></a></li>
+      <li><a href="https://www.cnbc.com/video/2019/05/13/ubers-weak-performance-could-chill-other-ipos-investment-analyst.html" target="_blank" rel="noopener"><div><div class="press-pub">CNBC — Squawk on the Street</div><div class="press-title">Uber's Weak Performance Could Chill Other IPOs</div></div><span class="press-arrow">↗</span></a></li>
+      <li><a href="https://www.cnbc.com/video/2019/06/14/bullpen-capital-founding-partner-the-markets-are-healing-this-is-the-time-to-go-public.html" target="_blank" rel="noopener"><div><div class="press-pub">CNBC</div><div class="press-title">The Markets Are Healing — This Is the Time to Go Public</div></div><span class="press-arrow">↗</span></a></li>
     </ul>
 
     <details>
-      <summary>Show all press &amp; media ↓</summary>
+      <summary>View all press &amp; media ↓</summary>
       <div class="details-content">
-
         <div>
-          <p class="subhead" style="margin-top:0;">More TV &amp; Video</p>
+          <p class="press-subhead">More TV &amp; Video</p>
           <ul class="press-list">
-            <li><a href="https://www.cnbc.com/video/2019/03/19/deloitte-2019-will-be-a-historic-year-for-ipos.html" target="_blank" rel="noopener"><div><div class="pub">CNBC — Squawk on the Street</div><div class="title">Deloitte: 2019 Will Be a Historic Year for IPOs</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://finance.yahoo.com/video/ipo-market-worst-behind-us-203245033.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">IPO Market: Is the Worst Behind Us?</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://finance.yahoo.com/video/why-one-strategist-says-spacs-161027427.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">Why One Strategist Says SPACs Aren't Going Anywhere</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://finance.yahoo.com/video/workplace-messaging-slack-surges-trading-185823095.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">Workplace Messaging: Slack Surges After Direct Listing</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://finance.yahoo.com/video/why-zoom-pinterest-ipos-matter-183400144.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance Live</div><div class="title">Why the Zoom and Pinterest IPOs Matter</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.youtube.com/watch?v=tTaiY1kI74s" target="_blank" rel="noopener"><div><div class="pub">Brex — Controllers Classified (YouTube)</div><div class="title">Ep. 8: An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.youtube.com/watch?v=Y5oydfoLMO8" target="_blank" rel="noopener"><div><div class="pub">Gappify (YouTube)</div><div class="title">E16: Accounting Perspectives from Today's IPO Environment with Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.cnbc.com/video/2019/03/19/deloitte-2019-will-be-a-historic-year-for-ipos.html" target="_blank" rel="noopener"><div><div class="press-pub">CNBC — Squawk on the Street</div><div class="press-title">Deloitte: 2019 Will Be a Historic Year for IPOs</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/ipo-market-worst-behind-us-203245033.html" target="_blank" rel="noopener"><div><div class="press-pub">Yahoo Finance Live</div><div class="press-title">IPO Market: Is the Worst Behind Us?</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/why-one-strategist-says-spacs-161027427.html" target="_blank" rel="noopener"><div><div class="press-pub">Yahoo Finance Live</div><div class="press-title">Why One Strategist Says SPACs Aren't Going Anywhere</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/workplace-messaging-slack-surges-trading-185823095.html" target="_blank" rel="noopener"><div><div class="press-pub">Yahoo Finance Live</div><div class="press-title">Workplace Messaging: Slack Surges After Direct Listing</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/video/why-zoom-pinterest-ipos-matter-183400144.html" target="_blank" rel="noopener"><div><div class="press-pub">Yahoo Finance Live</div><div class="press-title">Why the Zoom and Pinterest IPOs Matter</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.youtube.com/watch?v=tTaiY1kI74s" target="_blank" rel="noopener"><div><div class="press-pub">Brex — Controllers Classified</div><div class="press-title">Ep. 8: An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.youtube.com/watch?v=Y5oydfoLMO8" target="_blank" rel="noopener"><div><div class="press-pub">Gappify</div><div class="press-title">E16: Accounting Perspectives from Today's IPO Environment</div></div><span class="press-arrow">↗</span></a></li>
           </ul>
         </div>
-
         <div>
-          <p class="subhead" style="margin-top:0;">Print &amp; Online</p>
+          <p class="press-subhead">Print &amp; Online</p>
           <ul class="press-list">
-            <li><a href="https://www.bloomberg.com/news/articles/2024-02-03/skittish-investors-pull-the-rug-out-from-under-pricey-us-ipos" target="_blank" rel="noopener"><div><div class="pub">Bloomberg</div><div class="title">Skittish Investors Pull the Rug Out From Under Pricey US IPOs</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.bloomberg.com/news/articles/2023-09-12/plenty-of-startups-looking-at-ipos-but-few-are-prepared-to-go" target="_blank" rel="noopener"><div><div class="pub">Bloomberg</div><div class="title">Plenty of Startups Looking at IPOs, but Few Are Prepared to Go</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.cnbc.com/2023/07/23/signs-are-emerging-that-the-ipo-market-can-make-a-comeback-soon.html" target="_blank" rel="noopener"><div><div class="pub">CNBC</div><div class="title">Signs Are Emerging That the IPO Market Can Make a Comeback Soon</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.bizjournals.com/sanjose/news/2023/04/28/bay-area-unicorns-mean-little-on-wall-street.html" target="_blank" rel="noopener"><div><div class="pub">Silicon Valley Business Journal</div><div class="title">Bay Area Unicorns Mean Little on Wall Street</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.cnn.com/2023/04/25/investing/premarket-stocks-trading/index.html" target="_blank" rel="noopener"><div><div class="pub">CNN Business</div><div class="title">The Banking Crisis May Have Set the Stage for an IPO Comeback</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.cnn.com/2022/09/30/investing/premarket-stocks-trading" target="_blank" rel="noopener"><div><div class="pub">CNN Business</div><div class="title">Can Porsche Cure an Ailing IPO Market?</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.cnbc.com/amp/2021/09/01/18-billion-fanatics-prepares-for-ipo-heres-whats-next-for-the-company.html" target="_blank" rel="noopener"><div><div class="pub">CNBC</div><div class="title">$18 Billion Fanatics Prepares for IPO</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://finance.yahoo.com/news/how-ubers-ipo-pricing-compares-to-other-recent-offerings-205855023.html" target="_blank" rel="noopener"><div><div class="pub">Yahoo Finance</div><div class="title">How Uber's IPO Pricing Compares to Other Recent Offerings</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.nytimes.com/2019/06/20/technology/slack-stock-ipo-price-trading.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Slack Stock: IPO Price and Trading</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.nytimes.com/2019/04/15/technology/ipo-tech-companies-horde.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">The Horde of Tech Companies Heading to IPO</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.nytimes.com/2019/03/22/technology/pinterest-ipo.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Pinterest IPO</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.nytimes.com/2018/12/06/technology/lyft-uber-ipo.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Lyft and Uber's Road to IPO</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.nytimes.com/2018/11/27/business/company-ipo-buyout-private.html" target="_blank" rel="noopener"><div><div class="pub">The New York Times</div><div class="title">Why Companies Are Staying Private Longer</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.latimes.com/business/la-fi-lyft-ipo-uber-20190301-story.html" target="_blank" rel="noopener"><div><div class="pub">Los Angeles Times</div><div class="title">Lyft IPO and What It Means for Uber</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.marketwatch.com/story/stampede-of-the-decacorns-here-are-the-big-name-startups-preparing-for-2019-ipos-2018-12-27" target="_blank" rel="noopener"><div><div class="pub">MarketWatch</div><div class="title">Stampede of the 'Decacorns': Big-Name Startups Preparing for 2019 IPOs</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.marketwatch.com/story/slack-stock-soars-after-direct-listing-2019-06-20" target="_blank" rel="noopener"><div><div class="pub">MarketWatch</div><div class="title">Slack Stock Soars After Direct Listing</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.marketwatch.com/story/ipos-in-2018-here-are-six-tech-companies-that-could-go-public-2017-12-26" target="_blank" rel="noopener"><div><div class="pub">MarketWatch</div><div class="title">Six Tech Companies That Could Go Public in 2018</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.wired.com/story/uber-ipo-technology-bubble/" target="_blank" rel="noopener"><div><div class="pub">Wired</div><div class="title">The Uber IPO and the Technology Bubble</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://news.crunchbase.com/venture/slack-trades-over-40-per-share-following-direct-listing/" target="_blank" rel="noopener"><div><div class="pub">Crunchbase News</div><div class="title">Slack Trades Over $40 Per Share Following Direct Listing</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://news.crunchbase.com/public/how-to-read-an-s1/" target="_blank" rel="noopener"><div><div class="pub">Crunchbase News</div><div class="title">How to Read an S-1</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.wsj.com/articles/how-tech-startups-play-the-numbers-game-1433903883" target="_blank" rel="noopener"><div><div class="pub">The Wall Street Journal</div><div class="title">How Tech Startups Play the Numbers Game</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.economist.com/briefing/2019/04/17/the-wave-of-unicorn-ipos-reveals-silicon-valleys-groupthink" target="_blank" rel="noopener"><div><div class="pub">The Economist</div><div class="title">The Wave of Unicorn IPOs Reveals Silicon Valley's Groupthink</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://fortune.com/2019/03/29/lyft-ipo-tech-companies/" target="_blank" rel="noopener"><div><div class="pub">Fortune</div><div class="title">Lyft IPO Kicks Off Highly-Anticipated Year for Public Debuts in Tech</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://fortune.com/2019/08/14/wework-ipo-filing-prospectus-s1-financials-stock/" target="_blank" rel="noopener"><div><div class="pub">Fortune</div><div class="title">WeWork IPO Filing: 5 Things to Watch for as You Read Its Prospectus</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.brex.com/resources/controllers-classified/episode-08" target="_blank" rel="noopener"><div><div class="pub">Brex — Controllers Classified Podcast</div><div class="title">An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="arrow">↗</span></a></li>
-            <li><a href="https://www.gappify.com/podcast/e58-the-state-of-ipos-in-2025-how-ai-is-changing-the-game/" target="_blank" rel="noopener"><div><div class="pub">Gappify Podcast</div><div class="title">E58: The State of IPOs in 2025 — How AI Is Changing the Game</div></div><span class="arrow">↗</span></a></li>
+            <li><a href="https://www.bloomberg.com/news/articles/2024-02-03/skittish-investors-pull-the-rug-out-from-under-pricey-us-ipos" target="_blank" rel="noopener"><div><div class="press-pub">Bloomberg</div><div class="press-title">Skittish Investors Pull the Rug Out From Under Pricey US IPOs</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.bloomberg.com/news/articles/2023-09-12/plenty-of-startups-looking-at-ipos-but-few-are-prepared-to-go" target="_blank" rel="noopener"><div><div class="press-pub">Bloomberg</div><div class="press-title">Plenty of Startups Looking at IPOs, but Few Are Prepared to Go</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.cnbc.com/2023/07/23/signs-are-emerging-that-the-ipo-market-can-make-a-comeback-soon.html" target="_blank" rel="noopener"><div><div class="press-pub">CNBC</div><div class="press-title">Signs Are Emerging That the IPO Market Can Make a Comeback Soon</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.bizjournals.com/sanjose/news/2023/04/28/bay-area-unicorns-mean-little-on-wall-street.html" target="_blank" rel="noopener"><div><div class="press-pub">Silicon Valley Business Journal</div><div class="press-title">Bay Area Unicorns Mean Little on Wall Street</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.cnn.com/2023/04/25/investing/premarket-stocks-trading/index.html" target="_blank" rel="noopener"><div><div class="press-pub">CNN Business</div><div class="press-title">The Banking Crisis May Have Set the Stage for an IPO Comeback</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.cnn.com/2022/09/30/investing/premarket-stocks-trading" target="_blank" rel="noopener"><div><div class="press-pub">CNN Business</div><div class="press-title">Can Porsche Cure an Ailing IPO Market?</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.cnbc.com/amp/2021/09/01/18-billion-fanatics-prepares-for-ipo-heres-whats-next-for-the-company.html" target="_blank" rel="noopener"><div><div class="press-pub">CNBC</div><div class="press-title">$18 Billion Fanatics Prepares for IPO</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://finance.yahoo.com/news/how-ubers-ipo-pricing-compares-to-other-recent-offerings-205855023.html" target="_blank" rel="noopener"><div><div class="press-pub">Yahoo Finance</div><div class="press-title">How Uber's IPO Pricing Compares to Other Recent Offerings</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2019/06/20/technology/slack-stock-ipo-price-trading.html" target="_blank" rel="noopener"><div><div class="press-pub">The New York Times</div><div class="press-title">Slack Stock: IPO Price and Trading</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2019/04/15/technology/ipo-tech-companies-horde.html" target="_blank" rel="noopener"><div><div class="press-pub">The New York Times</div><div class="press-title">The Horde of Tech Companies Heading to IPO</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2019/03/22/technology/pinterest-ipo.html" target="_blank" rel="noopener"><div><div class="press-pub">The New York Times</div><div class="press-title">Pinterest IPO</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2018/12/06/technology/lyft-uber-ipo.html" target="_blank" rel="noopener"><div><div class="press-pub">The New York Times</div><div class="press-title">Lyft and Uber's Road to IPO</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.nytimes.com/2018/11/27/business/company-ipo-buyout-private.html" target="_blank" rel="noopener"><div><div class="press-pub">The New York Times</div><div class="press-title">Why Companies Are Staying Private Longer</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.latimes.com/business/la-fi-lyft-ipo-uber-20190301-story.html" target="_blank" rel="noopener"><div><div class="press-pub">Los Angeles Times</div><div class="press-title">Lyft IPO and What It Means for Uber</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.marketwatch.com/story/stampede-of-the-decacorns-here-are-the-big-name-startups-preparing-for-2019-ipos-2018-12-27" target="_blank" rel="noopener"><div><div class="press-pub">MarketWatch</div><div class="press-title">Stampede of the 'Decacorns': Big-Name Startups Preparing for 2019 IPOs</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.marketwatch.com/story/slack-stock-soars-after-direct-listing-2019-06-20" target="_blank" rel="noopener"><div><div class="press-pub">MarketWatch</div><div class="press-title">Slack Stock Soars After Direct Listing</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.marketwatch.com/story/ipos-in-2018-here-are-six-tech-companies-that-could-go-public-2017-12-26" target="_blank" rel="noopener"><div><div class="press-pub">MarketWatch</div><div class="press-title">Six Tech Companies That Could Go Public in 2018</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.wired.com/story/uber-ipo-technology-bubble/" target="_blank" rel="noopener"><div><div class="press-pub">Wired</div><div class="press-title">The Uber IPO and the Technology Bubble</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://news.crunchbase.com/venture/slack-trades-over-40-per-share-following-direct-listing/" target="_blank" rel="noopener"><div><div class="press-pub">Crunchbase News</div><div class="press-title">Slack Trades Over $40 Per Share Following Direct Listing</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://news.crunchbase.com/public/how-to-read-an-s1/" target="_blank" rel="noopener"><div><div class="press-pub">Crunchbase News</div><div class="press-title">How to Read an S-1</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.wsj.com/articles/how-tech-startups-play-the-numbers-game-1433903883" target="_blank" rel="noopener"><div><div class="press-pub">The Wall Street Journal</div><div class="press-title">How Tech Startups Play the Numbers Game</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.economist.com/briefing/2019/04/17/the-wave-of-unicorn-ipos-reveals-silicon-valleys-groupthink" target="_blank" rel="noopener"><div><div class="press-pub">The Economist</div><div class="press-title">The Wave of Unicorn IPOs Reveals Silicon Valley's Groupthink</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://fortune.com/2019/03/29/lyft-ipo-tech-companies/" target="_blank" rel="noopener"><div><div class="press-pub">Fortune</div><div class="press-title">Lyft IPO Kicks Off Highly-Anticipated Year for Public Debuts in Tech</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://fortune.com/2019/08/14/wework-ipo-filing-prospectus-s1-financials-stock/" target="_blank" rel="noopener"><div><div class="press-pub">Fortune</div><div class="press-title">WeWork IPO Filing: 5 Things to Watch for as You Read Its Prospectus</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.brex.com/resources/controllers-classified/episode-08" target="_blank" rel="noopener"><div><div class="press-pub">Brex — Controllers Classified Podcast</div><div class="press-title">An In-Depth Look at IPOs with Deloitte's Barrett Daniels</div></div><span class="press-arrow">↗</span></a></li>
+            <li><a href="https://www.gappify.com/podcast/e58-the-state-of-ipos-in-2025-how-ai-is-changing-the-game/" target="_blank" rel="noopener"><div><div class="press-pub">Gappify Podcast</div><div class="press-title">E58: The State of IPOs in 2025 — How AI Is Changing the Game</div></div><span class="press-arrow">↗</span></a></li>
           </ul>
         </div>
-
       </div>
     </details>
-
   </section>
+</div>
 
-</main>
+<footer>&copy; 2026 Barrett Daniels</footer>
 
-<footer>
-  &copy; 2026 Barrett Daniels
-</footer>
+<script>
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+</script>
 
 </body>
 </html>

@@ -36,7 +36,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
     nav {
       position: sticky;
       top: 0;
@@ -122,14 +121,12 @@
 
     .mobile-menu a:last-child { border-bottom: none; }
 
-    /* CONTAINER */
     .container {
       max-width: var(--max);
       margin: 0 auto;
       padding: 0 40px;
     }
 
-    /* HERO */
     .hero {
       padding: 80px 0 56px;
       border-bottom: 1px solid var(--border);
@@ -207,7 +204,6 @@
     .linkedin-btn:hover { background: var(--text); color: #fff; }
     .linkedin-btn svg { width: 14px; height: 14px; }
 
-    /* LOGO BARS */
     .logo-section {
       padding: 64px 0;
       border-bottom: 1px solid var(--border);
@@ -238,6 +234,9 @@
       align-items: center;
       gap: 48px;
       flex-wrap: wrap;
+      background: #1A1A1A;
+      padding: 24px 32px;
+      border-radius: 4px;
     }
 
     .logo-bar img {
@@ -245,18 +244,11 @@
       width: auto;
       object-fit: contain;
       transition: opacity 0.2s;
+      filter: brightness(0) invert(1);
     }
 
     .logo-bar img:hover { opacity: 0.7; }
 
-    .logo-divider {
-      width: 1px;
-      height: 32px;
-      background: var(--border);
-      margin: 0 8px;
-    }
-
-    /* SECTIONS */
     section {
       padding: 100px 0;
       border-bottom: 1px solid var(--border);
@@ -264,9 +256,6 @@
 
     section:last-child { border-bottom: none; }
 
-
-
-    /* ABOUT */
     .about p.section-label {
       font-size: 1.2rem;
       font-weight: 500;
@@ -287,7 +276,6 @@
 
     .about p + p { margin-top: 20px; }
 
-    /* CAREER */
     .bento {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -303,7 +291,6 @@
     }
 
     .bento-card:hover { background: var(--bg-subtle); }
-
     .bento-card.wide { grid-column: span 2; }
 
     .bento-year {
@@ -332,27 +319,6 @@
 
     .bento-card p + p { margin-top: 12px; }
 
-    /* CURRENT */
-    .current-card {
-      padding: 40px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border);
-    }
-
-    .current-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .current-card p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    /* PRESS */
     .video-wrap {
       margin-bottom: 40px;
       border: 1px solid var(--border);
@@ -440,7 +406,6 @@
       margin-bottom: 8px;
     }
 
-    /* FOOTER */
     footer {
       padding: 48px 40px;
       text-align: center;
@@ -449,7 +414,6 @@
       letter-spacing: 0.06em;
     }
 
-    /* MOBILE */
     @media (max-width: 640px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
@@ -460,7 +424,7 @@
       .hero h1 { font-size: 2rem; }
       section { padding: 56px 0; }
       .logo-section { padding: 40px 0; }
-      .logo-bar { gap: 24px; }
+      .logo-bar { gap: 24px; padding: 20px 24px; }
       .logo-bar img { height: 24px; }
       .bento { grid-template-columns: 1fr; }
       .bento-card.wide { grid-column: span 1; }
@@ -470,7 +434,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a class="nav-name" href="#">Barrett Daniels</a>
@@ -490,7 +453,6 @@
   <a href="#press" onclick="toggleMenu()">Press</a>
 </div>
 
-<!-- HERO -->
 <div class="container">
   <div class="hero">
     <div class="hero-meta">
@@ -512,30 +474,28 @@
   </div>
 </div>
 
-<!-- LOGO BARS -->
 <div class="container">
   <div class="logo-section">
     <p class="logo-label">Experience</p>
     <div class="logo-bar">
-      <a><img src="logo-deloitte.jpeg" alt="Deloitte"></a>
-      <a><img src="logo-softbank.jpeg" alt="SoftBank"></a>
-      <a><img src="logo-pwc.jpeg" alt="PwC"></a>
-      <a><img src="logo-successfactors.jpeg" alt="SAP"></a>
-      <a><img src="logo-nextstep.jpeg" alt="Nextstep"></a>
+      <img src="logo-deloitte.jpg" alt="Deloitte">
+      <img src="logo-softbank.png" alt="SoftBank">
+      <img src="logo-pwc.png" alt="PwC">
+      <img src="logo-successfactors.png" alt="SAP SuccessFactors">
+      <img src="logo-nextstep.jpeg" alt="Nextstep">
     </div>
     <div style="margin-top: 32px;">
       <p class="logo-label">As Seen In</p>
       <div class="logo-bar">
-        <a><img src="logo-cnbc.jpeg" alt="CNBC"></a>
-        <a><img src="logo-nyt.jpeg" alt="The New York Times"></a>
-        <a><img src="logo-wsj.jpeg" alt="The Wall Street Journal"></a>
-        <a><img src="logo-bloomberg.jpeg" alt="Bloomberg"></a>
+        <img src="logo-cnbc.jpeg" alt="CNBC">
+        <img src="logo-nyt.png" alt="The New York Times">
+        <img src="logo-wsj.png" alt="The Wall Street Journal">
+        <img src="logo-bloomberg.png" alt="Bloomberg">
       </div>
     </div>
   </div>
 </div>
 
-<!-- ABOUT -->
 <div class="container">
   <section id="about" class="about">
     <p class="section-label">About</p>
@@ -543,7 +503,6 @@
   </section>
 </div>
 
-<!-- CAREER -->
 <div class="container">
   <section id="career">
     <p class="section-label">Career Highlights</p>
@@ -580,7 +539,6 @@
   </section>
 </div>
 
-<!-- PRESS -->
 <div class="container">
   <section id="press">
     <p class="section-label">Barrett in the News</p>
